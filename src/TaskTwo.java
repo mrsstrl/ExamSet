@@ -20,26 +20,58 @@ public class TaskTwo {
     }
 
     public static void solution(List<Integer> inputList) {
-        List<Integer> result = createNewList(inputList);
-        System.out.println(result);
+        List<Integer> result = createNewList(inputList);// calling function createNewList
+        System.out.println(result);//printing the result
     }
 
     public static List<Integer> createNewList(List<Integer> inputList) {
-        List<Integer> result = new java.util.ArrayList<>();
-        boolean firstFound = false;
-        for (int value : inputList) {
+        List<Integer> result = new java.util.ArrayList<>();//using util to get a piece of our list in array (if i understand it in right way)
+        boolean firstFound = false;// put this boolean to false bc by default we have not found an element that equals 0 in our list
+        for (int value : inputList) {//checking all values in our inputList
             if (value == 0) {
-                if (firstFound) {
+                if (firstFound) {// when it is true, that means that we have already found second 0 in our list so we should break firstFound
                     break;
                 } else {
-                    firstFound = true;
+                    firstFound = true; // else it is our first 0 that we have found
                 }
-            } else if (firstFound) {
+            } else if (firstFound) { // else if firstFound is still true then we just add values
                 result.add(value);
             }
         }
         return result;
     }
 }
-//Ideas:
-//create a new list by putting elements from 2 near 0 in it
+/*package tasks;
+
+import tasks.utils.ArrayUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Task_9_4_finish {
+    public static List<Integer> readListFromConsole(){
+        int[] arr = ArrayUtils.readIntArrayFromConsole();
+        List<Integer> list = new ArrayList<>();
+        for (int num : arr) {
+            list.add(num);
+        }
+        return list;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> list = readListFromConsole();
+        List<Integer> res = new ArrayList<>();
+        int c = 0;
+        for(int num: list){
+           if(c==0){
+               if(num==0) c++;
+           }else{
+               if(num!=0) res.add(num);
+               else break;
+           }
+        }
+        for(int num: res){
+            System.out.print(num+" ");
+        }
+    }
+}*/
