@@ -9,9 +9,8 @@ for (int value : list){ ...}
 { 1, 0, 0, 7, 8, 9, 0, 4 } -> { }
 { 1, 0, 3, 4, 5 } -> { 3, 4, 5 }
 */
-
+import java.util.ArrayList;
 import java.util.List;
-
 public class TaskTwo {
     public static void main(String[] args) {
         solution(List.of(5, 3, 0, 3, 5, 0, 0, 4, 0, 4));
@@ -20,12 +19,7 @@ public class TaskTwo {
     }
 
     public static void solution(List<Integer> inputList) {
-        List<Integer> result = createNewList(inputList);// calling function createNewList
-        System.out.println(result);//printing the result
-    }
-
-    public static List<Integer> createNewList(List<Integer> inputList) {
-        List<Integer> result = new java.util.ArrayList<>();//using util to get a piece of our list in array (if i understand it in right way)
+        List<Integer> result = new ArrayList<>();//using util to get a piece of our list in array (if i understand it in right way)
         boolean firstFound = false;// put this boolean to false bc by default we have not found an element that equals 0 in our list
         for (int value : inputList) {//checking all values in our inputList
             if (value == 0) {
@@ -38,7 +32,7 @@ public class TaskTwo {
                 result.add(value);
             }
         }
-        return result;
+        System.out.println(result);
     }
 }
 /*package tasks;

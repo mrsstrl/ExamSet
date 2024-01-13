@@ -6,11 +6,14 @@
 для реализации основной функции.
 [ [ 4, 10, 54, 55, 6 ],
   [ 12, 55, 0, 44, 50],
-  [50, 55, 21, 33, 34] ] -> 21 (55 - максимальное значение содержащиеся в [1] и [3] столбцах, 21 - минимум в [3]
+  [50, 55, 21, 33, 34] ] -> 33 (55 - максимальное значение содержащиеся в [1] и [3] столбцах, 33 - минимум в [3]
   столбце.
 */
 public class TaskThree {
-    public static int findMax(int[][] data) {
+    public static void main(String[] args) {
+        System.out.println(findMinInLastColumnWithMax(new int[][]{{4, 10, 54, 55, 6}, {12, 55, 0, 44, 50}, {50, 55, 21, 33, 34}}));
+    }
+    public static int findMax(int[][] data) {//finding max element in the array
         int max = Integer.MIN_VALUE;//super extreme small pp size
         for (int j = 0; j < data[0].length; j++) {
             for (int i = 0; i < data.length; i++) {
@@ -22,44 +25,25 @@ public class TaskThree {
         return max;
     }
 
-    public static int findMinInLastRowWithMax(int[][] data) {
-        int maxRow = -1;
-        int maxElement = Integer.MIN_VALUE;
-
-        // Find the row with the maximum element
-        for (int i = 0; i < data.length; i++) {
-            for (int j = 0; j < data[i].length; j++) {
-                if (data[i][j] == findMax(data)) {
-                    maxRow = i;
-                    break;
+    public static int findMinInLastColumnWithMax(int[][] data) {
+        int maxColumn = -1;
+        int max = findMax(data);
+        outer: for (int i = data[0].length - 1; i >= 0; i--) { // outer - label // we are reading columns in array from the back and then we look in the rows of a column*
+            for (int j = 0; j < data.length; j++) {//*in this loop
+                if (data[j][i] == max) {
+                    maxColumn = i;
+                    break outer; // if it would be just break we would have broken j-loop but break outer breaks i-loop
                 }
             }
         }
 
-        // If no row with the maximum element is found, return some appropriate value or handle it accordingly
-        if (maxRow == -1) {
-            System.out.println("No row with the maximum element found.");
-            return Integer.MIN_VALUE; // You can change this to an appropriate value or handle it differently
-        }
-
         // Find the minimum element in the last row with the maximum element
-        int minInLastRowWithMax = data[maxRow][0];
-        for (int j = 1; j < data[maxRow].length; j++) {
-            if (data[maxRow][j] < minInLastRowWithMax) {
-                minInLastRowWithMax = data[maxRow][j];
+        int min = data[0][maxColumn];
+        for (int j = 1; j < data.length; j++) {
+            if (data[j][maxColumn] < min) {
+                min = data[j][maxColumn];
             }
         }
-
-        return minInLastRowWithMax;
-    }
-
-    public static void main(String[] args) {
-        int[][] dataArray = {
-                {4, 10, 54, 55, 6},
-                {12, 55, 0, 44, 50},
-                {50, 55, 21, 33, 34}
-        };
-
-        System.out.println(findMinInLastRowWithMax(dataArray));
+        return min;
     }
 }

@@ -12,11 +12,8 @@ import java.util.Map;
 
 public class TaskFouth {
     public static void main(String[] args) {
-        int[] array1 = {5, 2, 2, 7, -8, 4, 6, -8, 5, 1, -8};
-        int[] array2 = {4, 5, 6};
-
-        System.out.println(countDuplicateElements(array1)); // Output: 7
-        System.out.println(countDuplicateElements(array2)); // Output: 0
+        System.out.println(countDuplicateElements(new int[]{5, 2, 2, 7, -8, 4, 6, -8, 5, 1, -8})); // Output: 7
+        System.out.println(countDuplicateElements(new int[]{4, 5, 6})); // Output: 0
     }
 
     public static int countDuplicateElements(int[] array) {
@@ -31,7 +28,7 @@ public class TaskFouth {
         int duplicateCount = 0;
         for (int count : elementCounts.values()) {
             if (count > 1) {
-                duplicateCount++;
+                duplicateCount += count;
             }
         }
 
