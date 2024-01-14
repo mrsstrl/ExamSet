@@ -59,7 +59,7 @@ public class TaskSexthwinkwink {
         }
         sb.append("\n");
         return sb.toString();
-    }*/
+    }
     //4-2
     public static void main(String[] args) {
         System.out.println(draw(1, 1));
@@ -84,9 +84,7 @@ public class TaskSexthwinkwink {
             return result.toString();
         }
         for (int i = 1; i < h - 1; i++) {
-            for (int j = 1; j< h -1; j++){
-                result.append(drawInner(w, h));
-            }
+            result.append(drawInner(w, i));
         }
         result.append(drawTopBottom(w));
         return result.toString();
@@ -107,20 +105,23 @@ public class TaskSexthwinkwink {
 
     public static String drawInner(int w, int h) {
         StringBuilder result = new StringBuilder();
-        for (int i = 1; i < w; i++) {
-            for (int j = 1; j < h - 1; j++) {
-                if ((i == 1 || i == w - 1) && j > 0) {
-                    result.append("|");
-                } else if (j % 2 == 0 && i > 0) {
-                    result.append("\\");
-                } else if (j % 2 == 1 && i > 0) {
-                    result.append("/");
-                }
+        for (int i = 0; i < w; i++) {
+            if (i == 0 || i == w - 1) {
+                result.append("|");
+            } else if (h % 2 == 1) {
+                result.append("\\");
+            } else if (h % 2 == 0) {
+                result.append("/");
             }
         }
         result.append("\n");
         return result.toString();
+    }*/
+    public static void main(String[] args) {
+        for (int i = 1; i < 7; i++){
+            System.out.println(draw(i));
+        }
+
     }
 }
-
 
