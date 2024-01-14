@@ -116,12 +116,99 @@ public class TaskSexthwinkwink {
         }
         result.append("\n");
         return result.toString();
+    }
+    public static void main(String[] args) {
+        for (int i = 1; i < 7; i++) {
+            System.out.println(draw(i));
+        }
+    }
+
+    public static String draw(int h) {
+        if (h < 1) {
+            return "";
+        }
+        StringBuilder result = new StringBuilder();
+        result.append(drawBottom(h));
+        if (h == 1) {
+            return result.toString();
+        }
+        for (int j = 1; j < h; j++) {
+            result.append(drawInner(h * 2, j));
+        }
+        return result.toString();
+    }
+
+    public static String drawBottom(int h) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < h; i++) {
+            result.append("* ");
+        }
+        result.append("\n");
+        return result.toString();
+    }
+
+    public static String drawInner(int h, int j) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < h; i++) {//h=12 (2 times the height that was given in the task)
+            if (i < j || i > h - j - 2) {
+                result.append(" ");
+            } else if (i == j || i == h - j - 2) {
+                result.append("*");
+            } else if (((i % 2 == 0) && (j % 2 == 0)) || ((i % 2 == 1) && (j % 2 == 1))) {
+                result.append("@");
+            } else {
+                result.append(" ");
+            }
+        }
+        result.append("\n");
+        return result.toString();
     }*/
     public static void main(String[] args) {
-        for (int i = 1; i < 7; i++){
+        for (int i = 3; i <= 5; i++) {
             System.out.println(draw(i));
         }
 
     }
-}
 
+    public static String draw(int h) {
+        if (h < 3) {
+            return "";
+        }
+        StringBuilder result = new StringBuilder();
+        result.append(drawTopBottom(h));
+        for (int i = 1; i < h - 1; i++) {
+            result.append(drawInner(h, i));
+        }
+        result.append(drawTopBottom(h));
+        return result.toString();
+    }
+
+    public static String drawTopBottom(int h) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < h; i++) {
+            if (i != 0 && i != h - 1) {
+                result.append("-");
+            } else {
+                result.append(" ");
+            }
+        }
+        result.append("\n");
+        return result.toString();
+    }
+
+    public static String drawInner(int h, int i) {
+        StringBuilder result = new StringBuilder();
+        result.append("|");
+        for (int j = 1; j < h - 1; j++) {
+            if ((h - i - 1 > j) || (h - i - 1 < j)) {
+                result.append(" ");
+            } else {
+                result.append("/");
+            }
+
+        }
+        result.append("|");
+        result.append("\n");
+        return result.toString();
+    }
+}
